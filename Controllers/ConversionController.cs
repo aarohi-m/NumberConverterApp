@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -15,34 +17,40 @@ public class ConversionController : ControllerBase
 
         try
         {
-            int baseFrom = GetBase(from);
-            int baseTo = GetBase(to);
+            string result = PerformConversion(value, from.ToLower(), to.ToLower());
 
-            if (baseFrom == -1 || baseTo == -1)
+            if (result == null)
             {
-                return BadRequest(new { error = "Unsupported number system." });
+                return BadRequest(new { error = $"Unsupported conversion type: {from}-to-{to}" });
             }
-
-            int decimalValue = Convert.ToInt32(value, baseFrom);
-            string result = Convert.ToString(decimalValue, baseTo);
 
             return Ok(new { original = value, converted = result, from, to });
         }
         catch (Exception ex)
         {
-            return BadRequest(new { error = $"Conversion failed: {ex.Message}" });
+            return BadRequest(new { error = $"Conversion failed: Invalid input format for '{from}'. Details: {ex.Message}" });
         }
     }
 
-    private int GetBase(string format)
+    private string PerformConversion(string value, string from, string to)
     {
-        return format.ToLower() switch
+        Console.WriteLine($"Converting {value} from {from} to {to}"); // Debug log
+
+        Dictionary<string, Func<string, string>> conversionMethods = new()
         {
-            "binary" => 2,
-            "octal" => 8,
-            "decimal" => 10,
-            "hexadecimal" => 16,
-            _ => -1
+            { "binary-to-decimal", v => Convert.ToInt32(v, 2).ToString() },
+            { "octal-to-decimal", v => Convert.ToInt32(v, 8).ToString() },
+            { "hexadecimal-to-decimal", v => Convert.ToInt32(v.ToUpper(), 16).ToString() },
+            { "decimal-to-binary", v => int.TryParse(v, out var n) ? Convert.ToString(n, 2) : null },
+            { "decimal-to-octal", v => int.TryParse(v, out var n) ? Convert.ToString(n, 8) : null },
+            { "decimal-to-hexadecimal", v => int.TryParse(v, out var n) ? Convert.ToString(n, 16) : null }
         };
+
+        string key = $"{from}-to-{to}";
+        return conversionMethods.ContainsKey(key) ? conversionMethods[key].Invoke(value) : null;
     }
 }
+
+
+
+

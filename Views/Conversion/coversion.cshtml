@@ -1,0 +1,29 @@
+@model ConversionModel
+
+<form method="post" asp-action="ConvertNumber">
+    <label>Enter Number:</label>
+    <input type="text" asp-for="Value" />
+
+    <label>From:</label>
+    <select asp-for="FromBase">
+        <option value="decimal">Decimal</option>
+        <option value="binary">Binary</option>
+        <option value="hexadecimal">Hexadecimal</option>
+        <option value="octal">Octal</option>
+    </select>
+
+    <label>To:</label>
+    <select asp-for="ToBase">
+        <option value="decimal">Decimal</option>
+        <option value="binary">Binary</option>
+        <option value="hexadecimal">Hexadecimal</option>
+        <option value="octal">Octal</option>
+    </select>
+
+    <button type="submit">Convert</button>
+</form>
+
+@if (Model?.ConvertedValue != null)
+{
+    <p>Converted Result: @Model.ConvertedValue</p>
+}
