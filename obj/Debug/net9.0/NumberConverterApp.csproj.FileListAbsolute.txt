@@ -95,3 +95,4 @@ C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\refint\NumberConverte
 C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.pdb
 C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.genruntimeconfig.cache
 C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\ref\NumberConverterApp.dll
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.sourcelink.json
