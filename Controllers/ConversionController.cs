@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -11,16 +10,21 @@ public class ConversionController : ControllerBase
     {
         if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(from) || string.IsNullOrEmpty(to))
         {
-            return BadRequest(new { error = "Missing required parameters" });
+            return BadRequest(new { error = "Missing required parameters." });
         }
 
         try
         {
-            string result = PerformConversion(value, from.ToLower(), to.ToLower());
-            if (result == null)
+            int baseFrom = GetBase(from);
+            int baseTo = GetBase(to);
+
+            if (baseFrom == -1 || baseTo == -1)
             {
-                return BadRequest(new { error = "Unsupported conversion type" });
+                return BadRequest(new { error = "Unsupported number system." });
             }
+
+            int decimalValue = Convert.ToInt32(value, baseFrom);
+            string result = Convert.ToString(decimalValue, baseTo);
 
             return Ok(new { original = value, converted = result, from, to });
         }
@@ -30,19 +34,15 @@ public class ConversionController : ControllerBase
         }
     }
 
-    private string PerformConversion(string value, string from, string to)
+    private int GetBase(string format)
     {
-        Dictionary<string, Func<string, string>> conversionMethods = new()
+        return format.ToLower() switch
         {
-            { "binary-to-decimal", v => Convert.ToInt32(v, 2).ToString() },
-            { "octal-to-decimal", v => Convert.ToInt32(v, 8).ToString() },
-            { "hexadecimal-to-decimal", v => Convert.ToInt32(v, 16).ToString() },
-            { "decimal-to-binary", v => Convert.ToString(int.Parse(v), 2) },
-            { "decimal-to-octal", v => Convert.ToString(int.Parse(v), 8) },
-            { "decimal-to-hexadecimal", v => Convert.ToString(int.Parse(v), 16) }
+            "binary" => 2,
+            "octal" => 8,
+            "decimal" => 10,
+            "hexadecimal" => 16,
+            _ => -1
         };
-
-        string key = $"{from}-to-{to}";
-        return conversionMethods.ContainsKey(key) ? conversionMethods[key].Invoke(value) : null;
     }
 }
