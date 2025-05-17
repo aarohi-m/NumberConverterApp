@@ -12,7 +12,7 @@ public class ConversionController : ControllerBase
     private readonly ConversionService _conversionService;
 
     // In-memory list to store conversion history
-    private static List<ConversionHistory> conversionHistoryList = new List<ConversionHistory>();
+    private static List<ConversionHistory> conversionHistoryList = new();
 
     public ConversionController()
     {
