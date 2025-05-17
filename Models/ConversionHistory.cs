@@ -1,6 +1,5 @@
 using System;
-
-namespace NumberConverterApp.Models  
+namespace NumberConverterApp.Models 
 {
     public class ConversionHistory
     {
@@ -18,6 +17,10 @@ namespace NumberConverterApp.Models
             FromFormat = fromFormat;
             ToFormat = toFormat;
             Timestamp = DateTime.Now;
+        }
+
+        public ConversionHistory(string originalValue, string convertedValue, string fromFormat, string toFormat, DateTime now) : this(originalValue, convertedValue, fromFormat, toFormat)
+        {
         }
     }
 }

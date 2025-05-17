@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using  NumberConverterApp.Models;
+using NumberConverterApp.Models;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -54,7 +54,7 @@ public class ConversionController : ControllerBase
         string binaryResult = Convert.ToString(decimalValue, 2);
 
         //  added history entry
-        ConversionHistory historyEntry = new ConversionHistory(decimalValue.ToString(), binaryResult, "decimal", "binary", DateTime.Now);
+        ConversionHistory historyEntry = new(decimalValue.ToString(), binaryResult, "decimal", "binary", DateTime.Now);
         conversionHistoryList.Add(historyEntry);
 
         return Ok(new { original = decimalValue, converted = binaryResult, from = "decimal", to = "binary" });
