@@ -3,12 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="site.css"> <!-- Optional CSS file -->
+    <link rel="stylesheet" href="style.css"> <!-- Optional CSS file -->
 </head>
 <body>
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <nav>
+        <div class="heading">NumberConverter</div>
+        <img src="image.png">
+        <input list="options" id="search" placeholder="Search">
+        <datalist id="options">
+            <option value="Decimal to Binary">
+            <option value="Decimal to Hexadecimal">
+            <option value="Decimal to Octal">
+            <option value="Binary to Decimal">
+            <option value="Binary to Hexadecimal">
+            <option value="Binary to Octal">
+            <option value="Hexadecimal to Decimal">
+            <option value="Hexadecimal to Binary">
+            <option value="Hexadecimal to Octal">
+            <option value="Octal to Decimal">
+            <option value="Octal to Binary">
+            <option value="Octal to Hexadecimal">
+        </datalist>
+    </nav>
+
+    <div class="page">
+        <form action="https://localhost:5009/convert">
+            <label for="box1" id="decimal">Decimal</label> 
+            <input id="box1" type="number" step="any" placeholder="Enter a Number">
+            <br>
+            <label for="box2" id="binary">Binary</label> 
+            <input id="box2" type="number" placeholder="Enter a Number">
+            <br>
+            <label for="box3" id="hexadecimal">Hexadecimal</label> 
+            <input id="box3" type="number" step="any" placeholder="Enter a Number">
+            <br>
+            <label for="box4" id="octal">Octal</label> 
+            <input id="box4" type="number" step="any" placeholder="Enter a Number">
+            <button id="convert">Convert</button>
+        </form>
+
     </div>
+
+
+
+    
+    
 </body>
 </html>

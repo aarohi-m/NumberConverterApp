@@ -1,0 +1,172 @@
+nav{
+    background-color: rgb(229, 168, 178);
+    display: block;
+}
+
+.heading{
+    color:rgb(244, 243, 237);
+    padding: 1%;
+    padding-left: 17%;
+    font-size: 250%;
+    font-family: "Consolas", "Courier New", monospace;
+    font-weight: 600;
+}
+
+body{
+    background-color: rgb(241, 221, 224);
+}
+
+img{
+    width: 5%;
+    height: 8.2%;
+    position: absolute;
+    margin-top: -5%;
+    margin-left: 10%;
+}
+
+form{
+    margin-left: -17%;
+    margin-bottom: 27%;
+    text-align: center;
+    font-size: 230%;
+    font-family: "Consolas", "Courier New", monospace;
+    font-weight: 600;
+    color: rgb(228, 137, 152);
+}
+
+#decimal{
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 0.5%;
+    
+}
+
+#binary{
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 3.5%;
+}
+
+#hexadecimal{
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 6.5%;
+
+}
+
+#octal{
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 9.5%;
+
+}
+
+#box1{
+    border-radius: 18px;
+    position: absolute;
+    height: 7%;
+    width: 25%;
+    font-size: 55%;
+    font-family: "Consolas", "Courier New", monospace;
+    color: rgb(102, 100, 100);
+    font-weight: 600;
+    border-style:hidden;
+    padding-left:2%;
+    margin-left: 5%;
+
+}
+
+#box2{
+    border-radius: 18px;
+    position: absolute;
+    height: 7%;
+    width: 25%;
+    margin-top: 3%;
+    font-size: 55%;
+    font-family: "Consolas", "Courier New", monospace;
+    color: rgb(102, 100, 100);
+    font-weight: 600;
+    border-style:hidden;
+    padding-left:2%;
+    margin-left: 5%;
+
+}
+
+#box3{
+    border-radius: 18px;
+    position: absolute;
+    height: 7%;
+    width: 25%;
+    margin-top: 6%;
+    font-size: 55%;
+    font-family: "Consolas", "Courier New", monospace;
+    color: rgb(102, 100, 100);
+    font-weight: 600;
+    border-style:hidden;
+    padding-left:2%;
+    margin-left: 5%;
+
+}
+
+#box4{
+    border-radius: 18px;
+    position: absolute;
+    height: 7%;
+    width: 25%;
+    margin-top: 9%;
+    font-size: 55%;
+    font-family: "Consolas", "Courier New", monospace;
+    color: rgb(102, 100, 100);
+    font-weight: 600;
+    border-style:hidden;
+    padding-left:2%;
+    margin-left: 5%;
+
+}
+
+.page{
+    background-color: rgb(249, 240, 241);
+    padding: 5%;
+    align-items: center;
+    margin-top: 5%;
+    border-radius: 40px;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+#search{
+    position: absolute;
+    margin-left: 70%;
+    margin-top: -4.2%;
+    height: 5%;
+    width: 17%;
+    border-radius: 12px;
+    border-style: hidden;
+    font-size: 55%;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 120%;
+    padding-left: 1.5%;
+    font-weight: 600;
+    color: rgb(102, 100, 100);
+    background-color: rgb(245, 244, 244);
+ 
+}
+
+#convert{
+    position: absolute;
+    margin-top: 17%;
+    height: 6%;
+    width: 15%;
+    border-radius: 17px;
+    border-style: hidden;
+    color: white;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 55%;
+    background-color: rgb(231, 185, 192);
+    font-weight: 600;
+
+}
+
+#convert:hover{
+    background-color: rgb(194, 158, 163);
+}
