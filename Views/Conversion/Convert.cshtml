@@ -1,19 +1,23 @@
-@model ConversionModel
+@{
+    ViewData["Title"] = "Number Converter";
+}
+
+<h2>Convert a Number</h2>
 
 <form method="post" asp-action="ConvertNumber">
-    <label>Enter Number:</label>
-    <input type="text" asp-for="Value" />
+    <label for="inputValue">Enter Number:</label>
+    <input type="text" name="inputValue" required />
 
-    <label>From:</label>
-    <select asp-for="FromBase">
+    <label for="fromFormat">From Format:</label>
+    <select name="fromFormat">
         <option value="decimal">Decimal</option>
         <option value="binary">Binary</option>
         <option value="hexadecimal">Hexadecimal</option>
         <option value="octal">Octal</option>
     </select>
 
-    <label>To:</label>
-    <select asp-for="ToBase">
+    <label for="toFormat">To Format:</label>
+    <select name="toFormat">
         <option value="decimal">Decimal</option>
         <option value="binary">Binary</option>
         <option value="hexadecimal">Hexadecimal</option>
@@ -22,8 +26,3 @@
 
     <button type="submit">Convert</button>
 </form>
-
-@if (Model?.ConvertedValue != null)
-{
-    <p>Converted Result: @Model.ConvertedValue</p>
-}

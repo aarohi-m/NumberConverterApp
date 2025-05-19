@@ -1,69 +1,48 @@
-
-
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using NumberConverterApp.Models;
+using NumberConverterApp.Services;
+using NumberConverterApp.Data;
+using System.Linq;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ConversionController : ControllerBase
+public class ConversionController : Controller
 {
+    private readonly AppDbContext _dbContext;
     private readonly ConversionService _conversionService;
 
-    // In-memory list to store conversion history
-    private static List<ConversionHistory> conversionHistoryList = new();
-
-    public ConversionController()
+    public ConversionController(AppDbContext dbContext, ConversionService conversionService)
     {
-        _conversionService = new ConversionService();
+        _dbContext = dbContext;
+        _conversionService = conversionService;
     }
 
-    //  API endpoint for number conversions
-    [HttpGet("convert")]
-    public IActionResult ConvertNumber([FromQuery] string value, [FromQuery] string from, [FromQuery] string to)
+    // ✅ Displays UI Form for Conversion
+    [HttpGet]
+    public IActionResult Convert()
     {
-        if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(from) || string.IsNullOrEmpty(to))
-        {
-            return BadRequest(new { error = "Missing required parameters." });
-        }
-
-        string result = _conversionService.ConvertNumber(value, from.ToLower(), to.ToLower());
-
-        if (result == null)
-        {
-            return BadRequest(new { error = $"Unsupported or invalid conversion: {from}-to-{to}" });
-        }
-
-        //  history entry
-        ConversionHistory historyEntry = new ConversionHistory(value, result, from, to, DateTime.Now);
-        conversionHistoryList.Add(historyEntry);
-
-        return Ok(new { original = value, converted = result, from, to });
+        return View();
     }
 
-    //  Decimal to Binary Conversion Logic
-    [HttpGet("decimal-to-binary")]
-    public IActionResult ConvertDecimalToBinary([FromQuery] int decimalValue)
+    // ✅ Handles Number Conversion Request
+    [HttpPost]
+    public IActionResult ConvertNumber(string inputValue, string fromFormat, string toFormat)
     {
-        if (decimalValue < 0)
-        {
-            return BadRequest(new { error = "Negative values are not supported for binary conversion." });
-        }
+        if (string.IsNullOrEmpty(inputValue))
+            return View("Error"); // 🛠️ Show error page if input is missing
 
-        string binaryResult = Convert.ToString(decimalValue, 2);
+        string result = _conversionService.ConvertNumber(inputValue, fromFormat.ToLower(), toFormat.ToLower());
+        var historyEntry = new ConversionHistory(inputValue, result, fromFormat, toFormat);
+        
+        _dbContext.ConversionHistories.Add(historyEntry);
+        _dbContext.SaveChanges(); // ✅ Stores history in DB
 
-        //  added history entry
-        ConversionHistory historyEntry = new(decimalValue.ToString(), binaryResult, "decimal", "binary", DateTime.Now);
-        conversionHistoryList.Add(historyEntry);
-
-        return Ok(new { original = decimalValue, converted = binaryResult, from = "decimal", to = "binary" });
+        return View("Result", historyEntry); // ✅ Passes data to Result.cshtml
     }
 
-    //  Endpoint to retrieve past conversions
+    // ✅ Retrieves Conversion History
     [HttpGet("history")]
-    public IActionResult GetConversionHistory()
+    public IActionResult History()
     {
-        return Ok(conversionHistoryList);
+        var historyList = _dbContext.ConversionHistories.ToList();
+        return View("History", historyList); // ✅ Passes history to UI
     }
 }

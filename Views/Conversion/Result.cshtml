@@ -1,0 +1,11 @@
+@model NumberConverterApp.Models.ConversionHistory
+
+<h2>Conversion Result</h2>
+
+<p><strong>Original:</strong> @Model.OriginalValue</p>
+<p><strong>Converted:</strong> @Model.ConvertedValue</p>
+<p><strong>From:</strong> @Model.FromFormat</p>
+<p><strong>To:</strong> @Model.ToFormat</p>
+<p><strong>Timestamp:</strong> @Model.Timestamp.ToString("f")</p>
+
+<a href="/">Convert Another</a>
