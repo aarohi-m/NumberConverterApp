@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NumberConverterApp.Data;
+using NumberConverterApp.DataB;
 
 var builder = WebApplication.CreateBuilder(args);
 
