@@ -1,0 +1,9 @@
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.csproj.AssemblyReference.cache
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.AssemblyInfoInputs.cache
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.AssemblyInfo.cs
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.csproj.CoreCompileInputs.cache
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.RazorAssemblyInfo.cache
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.RazorAssemblyInfo.cs
+C:\Users\Preeti Mishra\NumberConverterApp\obj\Debug\net9.0\NumberConverterApp.sourcelink.json

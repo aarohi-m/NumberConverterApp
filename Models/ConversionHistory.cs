@@ -5,7 +5,7 @@ namespace NumberConverterApp.Models
 {
     public class ConversionHistory
     {
-        [Key] // Auto-generated primary key (if using EF Core)
+        [Key] // Auto-generated primary key
         public int Id { get; set; }
         public string OriginalValue { get; set; }
         public string ConvertedValue { get; set; }
