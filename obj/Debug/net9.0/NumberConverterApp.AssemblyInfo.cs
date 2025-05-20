@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NumberConverterApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a42b014c35b1e9ae33af5e383e25d79323e9cf6e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+948a917851beeffa0d9c017599d89eaf456f131f")]
 [assembly: System.Reflection.AssemblyProductAttribute("NumberConverterApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NumberConverterApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

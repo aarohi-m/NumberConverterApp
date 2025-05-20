@@ -1,12 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using NumberConverterApp.Models;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+namespace NumberConverterApp.DataB
 {
-    public DbSet<ConversionHistory> ConversionHistories { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        modelBuilder.Entity<ConversionHistory>().HasKey(c => c.Id);
+        public DbSet<ConversionHistory> ConversionHistories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            _ = modelBuilder.Entity<ConversionHistory>().HasKey(c => c.Id);
+        }
     }
 }

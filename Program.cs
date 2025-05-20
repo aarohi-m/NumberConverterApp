@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NumberConverterApp.DataB;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
@@ -12,7 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 
 app.UseStaticFiles();

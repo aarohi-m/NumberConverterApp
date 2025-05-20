@@ -1,48 +1,43 @@
 using Microsoft.AspNetCore.Mvc;
 using NumberConverterApp.Models;
 using NumberConverterApp.Services;
-using NumberConverterApp.;
+using NumberConverterApp.DataB;
 using System.Linq;
 
-public class ConversionController : Controller
+namespace NumberConverterApp.Controllers
 {
-    private readonly AppDbContext _dbContext;
-    private readonly ConversionService _conversionService;
 
-    public ConversionController(AppDbContext dbContext, ConversionService conversionService)
+    public class ConversionController
+    (AppDbContext dbContext, ConversionService conversionService) : Controller
     {
-        _dbContext = dbContext;
-        _conversionService = conversionService;
-    }
+        [HttpGet]
+        public IActionResult Convert()
+        {
+            return View();
+        }
 
-   
-    [HttpGet]
-    public IActionResult Convert()
-    {
-        return View();
-    }
+        //  Number Conversion Request
+        [HttpPost]
+        public IActionResult ConvertNumber(string inputValue, string fromFormat, string toFormat)
+        {
+            if (string.IsNullOrEmpty(inputValue))
+                return View("Error"); //  error page if input is missing
 
-    //  Number Conversion Request
-    [HttpPost]
-    public IActionResult ConvertNumber(string inputValue, string fromFormat, string toFormat)
-    {
-        if (string.IsNullOrEmpty(inputValue))
-            return View("Error"); //  error page if input is missing
+            string result = conversionService.ConvertNumber(inputValue, fromFormat.ToLower(), toFormat.ToLower());
+            ConversionHistory historyEntry = new(inputValue, result, fromFormat, toFormat);
 
-        string result = _conversionService.ConvertNumber(inputValue, fromFormat.ToLower(), toFormat.ToLower());
-        var historyEntry = new ConversionHistory(inputValue, result, fromFormat, toFormat);
-        
-        _dbContext.ConversionHistories.Add(historyEntry);
-        _dbContext.SaveChanges(); // Stores history in DB
+            _ = dbContext.ConversionHistories.Add(historyEntry);
+            _ = dbContext.SaveChanges(); // Stores history in DB
 
-        return View("Result", historyEntry); //  Passes data to Result.cshtml
-    }
+            return View("Result", historyEntry); //  Passes data to Result.cshtml
+        }
 
-    // Retrieves Conversion History
-    [HttpGet("history")]
-    public IActionResult History()
-    {
-        var historyList = _dbContext.ConversionHistories.ToList();
-        return View("History", historyList); // Passes history to UI
+        // Retrieves Conversion History
+        [HttpGet("history")]
+        public IActionResult History()
+        {
+            List<ConversionHistory> historyList = dbContext.ConversionHistories.ToList();
+            return View("History", historyList); // Passes history to UI
+        }
     }
 }
