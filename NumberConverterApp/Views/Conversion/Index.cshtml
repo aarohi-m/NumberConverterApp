@@ -1,0 +1,24 @@
+@model ConversionViewModel
+
+<form asp-action="Index" method="post">
+  <label>From:</label>
+  <select asp-for="FromBase" asp-items="Model.BaseOptions"></select>
+
+    <label>To:</label>
+  <select asp-for="ToBase" asp-items="Model.BaseOptions"></select>
+
+  <label>Value:</label>
+  <input asp-for="InputValue" required />
+
+
+
+  <button type="submit">Convert</button>
+</form>
+
+@if (Model.Result != null)
+{
+  <section>
+    <h2>Result:</h2>
+    <p>@Model.Result</p>
+  </section>
+}
